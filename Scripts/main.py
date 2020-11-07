@@ -1,25 +1,25 @@
 import pickle
 import pandas as pd
 
-model_dict = pickle.load(open("Models/model_dict.pkl", "rb"))
-model = model_dict["gs_lr"]
+model_dict = pickle.load(open("D:/PSD/diabetes-classifier/Models/model_dict.pkl", "rb"))
+model = model_dict["gs_logreg"]
 
 
 def input_values():
 
     stats = {
-        "Pregnancies": 0,
-        "Glucose:": 0,
-        "BloodPressure": 0,
-        "SkinThickness": 0,
-        "Insulin": 0,
-        "BMI": 0,
-        "DiabetesPedigreeFunction": 0,
-        "Age": 0
+        "Pregnancies": [0],
+        "Glucose:": [0],
+        "BloodPressure": [0],
+        "SkinThickness": [0],
+        "Insulin": [0],
+        "BMI": [0],
+        "DiabetesPedigreeFunction": [0],
+        "Age": [0]
     }
 
     for name, value in stats.items():
-        stats[name] = input("Enter the {}".format(name))
+        stats[name][0] = input("Enter the {}:".format(name))
 
     dataframe = pd.DataFrame.from_dict(stats, orient='columns')
     return dataframe
@@ -34,6 +34,6 @@ def output():
     elif pred == 1:
         return "Diabetic."
 
-print(f"The patient is {output()}.")
+print(f"The patient is {output()}")
 
 
